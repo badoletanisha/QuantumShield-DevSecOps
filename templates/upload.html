@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumShield - Upload</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .upload-box {
+            background-color: #16213e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            width: 400px;
+        }
+        .logo {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #00d4ff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .welcome {
+            color: #aaa;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .success {
+            color: #00ff88;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .upload-area {
+            border: 2px dashed #0f3460;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .upload-area p {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #0f3460;
+            border-radius: 5px;
+            background-color: #0f3460;
+            color: white;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00d4ff;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00b8d9;
+        }
+        .logout {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff4444;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .logout:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-box">
+        <div class="logo">🛡️ QuantumShield</div>
+        <h2>File Upload</h2>
+        <p class="welcome">Welcome, {{ user }}!</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p class="success">{{ messages[0] }}</p>
+            {% endif %}
+        {% endwith %}
+
+        <div class="upload-area">
+            <p>Select a file to upload securely</p>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Upload File</button>
+            </form>
+        </div>
+
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</body>
+</html>
