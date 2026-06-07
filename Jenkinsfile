@@ -24,11 +24,10 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonarqube-server') {
                     sh '''
-                        $SONAR_HOME/bin/sonar-scanner \
-                        -Dsonar.projectKey=QuantumShield \
-                        -Dsonar.projectName=QuantumShield \
-                        -Dsonar.organization=badoletanisha \
-                        -Dsonar.sources=.
+                       -Dsonar.projectKey=badoletanisha_QuantumShield-DevSecOps \
+                       -Dsonar.projectName=QuantumShield-DevSecOps \
+                       -Dsonar.organization=badoletanisha \
+                       -Dsonar.sources=.
                     '''
                 }
             }
