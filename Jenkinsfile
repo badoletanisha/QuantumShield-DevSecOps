@@ -20,18 +20,19 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube-server') {
-                    sh '''
-                       -Dsonar.projectKey=badoletanisha_QuantumShield-DevSecOps \
-                       -Dsonar.projectName=QuantumShield-DevSecOps \
-                       -Dsonar.organization=badoletanisha \
-                       -Dsonar.sources=.
-                    '''
-                }
-            }
+       stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('sonarqube-server') {
+            sh '''
+                $SONAR_HOME/bin/sonar-scanner \
+                -Dsonar.projectKey=badoletanisha_QuantumShield-DevSecOps \
+                -Dsonar.projectName=QuantumShield-DevSecOps \
+                -Dsonar.organization=badoletanisha \
+                -Dsonar.sources=.
+            '''
         }
+    }
+}
 
         stage('Quality Gate') {
             steps {
