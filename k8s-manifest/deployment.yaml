@@ -13,12 +13,26 @@ spec:
       labels:
         app: flask-app
     spec:
+      # ✅ Fix 1: Disable automounting service account
+      automountServiceAccountToken: false
       containers:
       - name: flask-app
         image: tanishabadole28/flask-app:1
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+        env:
+        - name: FLASK_HOST
+          value: "0.0.0.0"
+        # ✅ Fix 2: Add resource limits and requests
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+            ephemeral-storage: "1Gi"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         livenessProbe:
           httpGet:
             path: /health
