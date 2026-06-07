@@ -149,12 +149,11 @@ pipeline {
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: 'trivy-report.txt',
-                             allowEmptyArchive: true
-            sh 'pkill -f app.py || true'
-            cleanWs()
-        }
+    always {
+        archiveArtifacts artifacts: 'trivy-report.txt',
+                         allowEmptyArchive: true
+        sh 'pkill -f app.py || true'
+    }
         success {
             echo "✅ Pipeline Successful!"
         }
