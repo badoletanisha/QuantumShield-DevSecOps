@@ -27,6 +27,7 @@ pipeline {
                         $SONAR_HOME/bin/sonar-scanner \
                         -Dsonar.projectKey=QuantumShield \
                         -Dsonar.projectName=QuantumShield \
+                        -Dsonar.organization=badoletanisha \
                         -Dsonar.sources=.
                     '''
                 }
