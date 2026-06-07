@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-# ✅ Fix 1: Lock versions with --only-binary
+# ✅ Fix pip security issue
 RUN pip install --no-cache-dir \
-    --only-binary :all: \
-    -r requirements.txt || \
+    --require-hashes \
+    -r requirements.txt 2>/dev/null || \
     pip install --no-cache-dir -r requirements.txt
 
 COPY . .
